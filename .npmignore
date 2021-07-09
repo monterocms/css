@@ -1,0 +1,7 @@
+.gitattributes
+.git
+.DS_Store
+.gitignore
+.github
+.dependabot
+stories
