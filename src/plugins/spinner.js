@@ -1,4 +1,4 @@
-const { css } = require('../support/syntax')
+const { css } = require('../tools/syntax')
 
 module.exports = () => function ({ postcss, defineStyles, defineComponent, theme }) {
   const keyframes = postcss.parse(css`

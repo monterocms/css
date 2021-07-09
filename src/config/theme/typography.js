@@ -1,4 +1,4 @@
-const { typeScale } = require('../../support/type')
+const { typeScale } = require('../../tools/type')
 
 module.exports = {
   kerning: {

@@ -10,15 +10,5 @@ module.exports = {
     colors: {
       blue: 'colors.blue.500'
     }
-  },
-  format: {
-    componentClassName: (baseCls) => {
-      return {
-        block: () => `.${baseCls}`,
-        screen: (size) => `.${size}:${baseCls}`,
-        modifier: (variant) => `.${baseCls}-${variant}`,
-        child: (child) => `.${baseCls}-${child}`,
-      }
-    }
-  }, 
+  }
 }

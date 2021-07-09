@@ -1,10 +1,15 @@
 const fs = require('fs')
 const postcss = require('postcss')
 const CleanCSS = require('clean-css')
-const montero = require('..')
+const montero = require('../src')
 
+let defaultConfig = {}
 
-function buildDistFile(filename, config = {}, outFilename = filename) {
+if (!fs.existsSync(`${__dirname}/../dist`)) {
+  fs.mkdirSync(`${__dirname}/../dist`)
+}
+
+function buildDistFile(filename, config = defaultConfig, outFilename = filename) {
   return new Promise((resolve, reject) => {
     console.log(`Processing ./${filename}.css...`)
 
