@@ -1,6 +1,6 @@
 {
   "name": "@montero/css",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "license": "MIT",
   "main": "./src/index.js",
   "style": "dist/montero.css",
