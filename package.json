@@ -1,12 +1,9 @@
 {
   "name": "@montero/css",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "main": "./src/index.js",
   "style": "dist/montero.css",
-  "engines": {
-    "node": ">=15.0.0"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/monterocms/css.git"
@@ -20,7 +17,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build": "node scripts/build.js",
-    "prepublishOnly": "yarn install --force && yarn build"
+    "prepublishOnly": "yarn install --force && yarn build",
+    "postpublish": "git push && git push --tags"
   },
   "peerDependencies": {
     "autoprefixer": "^10.0.2",
