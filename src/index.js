@@ -53,15 +53,54 @@ function getConfig(options) {
   return options
 }
 
+function getConfig(options) {
+  if (!options) {
+    options = baseConfig
+  }
+  if (_.has(options, 'config')) {
+    options = options.config
+  }
+  if (!_.has(options, 'theme')) {
+    options.theme = baseConfig.theme
+  }
+  if (_.has(options, 'extend') && _.isObject(options, 'extend')) {
+    options.theme = _.merge(options.theme, options.extend)
+    delete options.extend
+  }
+  return options
+}
+
+
+const getConfigFunction = (config) => () =>  {
+  if (_.isString(config)) {
+    console.log('config is string', require.resolve(config))
+    // find config file
+    // parse local require statements
+    delete require.cache[require.resolve(config)]
+    // delete require.cache[require.resolve(requiredFilePath)]
+  }
+
+  let configObject = _.isObject(config)
+    ? _.get(config, 'config', config)
+    : require(config)
+
+    // console.log({ configObject })
+
+  return {
+    configFile: _.isString(config) ? config : null,
+    config: getConfig(configObject)
+  }
+}
+
 
 module.exports = (options) => {
   let configPath = getConfigPath(options)
-  let config = configPath ? getConfig(require(configPath)) : getConfig(options)
+  let getConfig = getConfigFunction(configPath || options)
   
   return {
-    postcssPlugin: 'montero',
+    postcssPlugin: '@montero/css',
     plugins: [
-      plugin(config),
+      plugin(getConfig),
       formatCSS
     ]
   }

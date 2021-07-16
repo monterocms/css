@@ -4,9 +4,6 @@
   "license": "MIT",
   "main": "./src/index.js",
   "style": "dist/montero.css",
-  "engines": {
-    "node": ">=15.0.0"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/monterocms/css.git"
@@ -33,6 +30,7 @@
     "dlv": "^1.1.3",
     "lodash": "^4.17.21",
     "modern-normalize": "^1.1.0",
+    "object-hash": "^2.2.0",
     "postcss-js": "^3.0.3",
     "postcss-nested": "^5.0.5",
     "postcss-scss": "^3.0.5",
