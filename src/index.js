@@ -58,6 +58,11 @@ module.exports = (options) => {
   let configPath = getConfigPath(options)
   let config = configPath ? getConfig(require(configPath)) : getConfig(options)
   
+  setTimeout(() => {
+    console.log('reseting...')
+    config = {}
+  }, 5000)
+
   return {
     postcssPlugin: 'montero',
     plugins: [

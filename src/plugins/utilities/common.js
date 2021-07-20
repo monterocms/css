@@ -1,6 +1,6 @@
 
 module.exports = function () {
-    return ({ defineUtility, config, }) => {
+    return ({ defineUtility, addUtilities, config, }) => {
       defineUtility({
         class: 'w',
         screens: true,
@@ -25,6 +25,15 @@ module.exports = function () {
         screens: true,
         property: 'text-align',
         values: ['left', 'center', 'right']
+      })
+
+      addUtilities({
+        '.block': { display: 'block' },
+        '.inline-block': { display: 'inline-block' },
+        '.flex': { display: 'flex' },
+        '.inline-flex': { display: 'inline-flex' },
+        '.grid': { display: 'grid' },
+        '.hidden': { display: 'none' },
       })
     }
   }

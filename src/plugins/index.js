@@ -14,6 +14,7 @@ module.exports = {
   // Layout
   stack: require('./stack'),
   grid: require('./grid'),
+  container: require('./container'),
 
   avatar: require('./avatar'),
   spinner: require('./spinner'),
@@ -34,6 +35,9 @@ module.exports = {
   //
   colors: require('./utilities/colors'),
   spacing: require('./utilities/spacing'),
+  flex: require('./utilities/flex'),
+  grid: require('./utilities/grid'),
   visuallyHidden: require('./utilities/visually-hidden'),
   common: require('./utilities/common'),
+
 }
