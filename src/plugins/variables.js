@@ -1,18 +1,17 @@
-const flattenObject = require('../utils/flattenObject')
+const buildCSSThemeVariables = require('../utils/buildCSSThemeVariables')
 
-module.exports = () => function ({ defineStyles, config }) {
+module.exports = () => function ({ postcss, defineStyles, config }) {
   const theme = config('theme')
-  const tokens = flattenObject(theme)
+  const variables = buildCSSThemeVariables(theme)
 
-  const variables = {}
-  for (const [key, value] of Object.entries(tokens)) {
-    const prop = `--montero-${key.split('.').join('-')}`
-    variables[prop] = String(value)
+  const vars = [];
+  for (let key in variables) {
+    vars.push(`${key}: ${variables[key]};`)
   }
 
-  defineStyles('base', {
-    ':root': {
-      ...variables
-    }
-  })        
+  const { nodes } = postcss.parse(`:root {
+    ${vars.join('\n')}
+  }`)
+
+  defineStyles('base', [...nodes])
 }

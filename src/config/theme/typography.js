@@ -28,7 +28,7 @@ module.exports = {
     10: '2.5rem'
   },
 
-  'font-weight': {
+  fontWeight: {
     hairline: 100,
     thin: 200,
     light: 300,
@@ -45,5 +45,5 @@ module.exports = {
     mono: 'SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace'
   },
 
-  'font-size': typeScale('Application')
+  fontSize: typeScale('Application'),
 }

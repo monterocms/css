@@ -9,10 +9,5 @@ module.exports = function (pluginConfig, plugins) {
       return pluginConfig !== false && pluginConfig[pluginName] !== false
     })
 
-    console.log({
-      pluginNames,
-      plugins
-    })
-
   return pluginNames
 }

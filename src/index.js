@@ -8,7 +8,7 @@ const defaultConfig = require('./defaultConfig')
 
 const getConfigFunction = (config) => () => {
   if (_.isUndefined(config)) {
-    console.log("Using default config");
+    // console.log("Using default config");
     return defaultConfig
   }
 
@@ -18,9 +18,9 @@ const getConfigFunction = (config) => () => {
     })
   }
 
-  const configObject = _.isObject(config) ? _.get(config, 'config', config) : require(config)
-
-  return configObject
+  return _.isObject(config)
+    ? _.get(config, 'config', config)
+    : require(config)
 }
 
 

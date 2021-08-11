@@ -6,9 +6,5 @@ module.exports = {
   // corePlugins: {
   //   pluginToDisable: false
   // },
-  references: {
-    colors: {
-      blue: 'colors.blue.500'
-    }
-  }
+  references: {}
 }

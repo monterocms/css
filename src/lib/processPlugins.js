@@ -207,7 +207,7 @@ module.exports = function (plugins, config) {
 
       defineComponent: (name, { baseStyle, parts, screens = {}, variants = {}, ...rest }) => {
         const defaults = { respectPrefix: true }
-        const options = { ...defaults, ...rest } 
+        const options = { ...defaults, ...rest }
 
         const classNamer = (baseCls) => {
             return {
@@ -216,7 +216,7 @@ module.exports = function (plugins, config) {
               modifier: (variant) => `.${baseCls}-${variant}`,
               child: (child) => `.${baseCls}-${child}`,
             }
-        } 
+        }
 
         let cls = classNamer(name)
         let definitions = {}
@@ -237,7 +237,7 @@ module.exports = function (plugins, config) {
           } else if (baseStyle.root) {
             definitions[cls.block()] = baseStyle.root
           }
-       
+
           for (let part of parts) {
             definitions[cls.child(part)] = baseStyle[part]
           }
@@ -245,9 +245,9 @@ module.exports = function (plugins, config) {
           definitions[cls.block()] = baseStyle
         }
 
-        // Variants 
+        // Variants
         for (const [variant, styleObject] of Object.entries(variants)) {
-          if (hasParts) { 
+          if (hasParts) {
             let hasPartsDefined = false
             for (let part of parts) {
               if (part in styleObject) {
@@ -255,13 +255,13 @@ module.exports = function (plugins, config) {
                 break
               }
             }
-  
+
             if (!hasPartsDefined) {
               definitions[cls.modifier(variant)] = styleObject.root ?? styleObject
             } else if (styleObject.root) {
               definitions[cls.modifier(variant)] = styleObject.root
             }
-         
+
             for (let part of parts) {
               if (styleObject[part]) {
                 const selectors = [
@@ -272,7 +272,7 @@ module.exports = function (plugins, config) {
               } else {
                 definitions[cls.modifier(variant)] = styleObject
               }
-            } 
+            }
           } else {
             definitions[cls.modifier(variant)] = styleObject
           }
@@ -285,11 +285,11 @@ module.exports = function (plugins, config) {
           })
         }]
 
-        // Responsive 
+        // Responsive
         for (const [screen, styleObject] of Object.entries(screens)) {
           let definitionsForScreen = {}
 
-          if (hasParts) { 
+          if (hasParts) {
             let hasPartsDefined = false
             for (let part of parts) {
               if (part in styleObject) {
@@ -297,13 +297,13 @@ module.exports = function (plugins, config) {
                 break
               }
             }
-  
+
             if (!hasPartsDefined) {
               definitionsForScreen[cls.block()] = styleObject.root ?? styleObject
             } else if (styleObject.root) {
               definitionsForScreen[cls.block()] = styleObject.root
             }
-         
+
             for (let part of parts) {
               if (styleObject[part]) {
                 const selectors = [
@@ -361,13 +361,13 @@ module.exports = function (plugins, config) {
           let additionalStyles = {}
 
           if (_.isArray(value)) {
-            additionalStyles = { ...value[1] } 
+            additionalStyles = { ...value[1] }
             value = value[0]
           }
 
           if (_.isArray(property)) {
             for (const prop of property) {
-              styleObject[prop] = value    
+              styleObject[prop] = value
             }
           } else {
             styleObject[property] = value
@@ -396,7 +396,7 @@ module.exports = function (plugins, config) {
           screen: null,
           styles: postcss.root({ nodes })
         }]
-        
+
         for (const screen of screens) {
           const styles = postcss.root({ nodes })
           styles.walkRules((rule) => {
@@ -417,7 +417,7 @@ module.exports = function (plugins, config) {
           if (screen) {
             pluginUtilities.push(
               wrapWithLayer(wrapWithScreenAtRule(styles.nodes, screen), 'utilities')
-            )    
+            )
           } else {
             pluginUtilities.push(
               wrapWithLayer(styles.nodes, 'utilities')
