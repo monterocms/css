@@ -12,25 +12,37 @@ const substituteScreenAtRules = require('./lib/substituteScreenAtRules')
 const applyImportantConfiguration = require('./lib/applyImportantConfiguration')
 const convertLayerAtRulesToControlComments = require('./lib/convertLayerAtRulesToControlComments')
 
+const hash = require('./utils/hashConfig')
+const {shared} = require('./utils/disposables')
+
+let previousConfig = null
 let processedPlugins = null
 let getProcessedPlugins = null
 
-module.exports = function processFeatures (config) {
-  return css => {
-    processedPlugins = processPlugins(
-      [...corePlugins(config), ..._.get(config, 'plugins', [])],
-      config
-      // functions
-    )
+module.exports = function processFeatures (getConfig) {
+  return (css, result) => {
+    const config = getConfig()
+    const configChanged = hash(previousConfig) !== hash(config)
+    previousConfig = config
 
-    getProcessedPlugins = function () {
-      return {
-        ...processedPlugins,
-        base: cloneNodes(processedPlugins.base),
-        components: cloneNodes(processedPlugins.components),
-        utilities: cloneNodes(processedPlugins.utilities)
+    if (configChanged) {
+      shared.dispose()
+
+      processedPlugins = processPlugins(
+        [...corePlugins(config), ..._.get(config, 'plugins', [])],
+        config
+      )
+
+      getProcessedPlugins = function () {
+        return {
+          ...processedPlugins,
+          base: cloneNodes(processedPlugins.base),
+          components: cloneNodes(processedPlugins.components),
+          utilities: cloneNodes(processedPlugins.utilities),
+        }
       }
     }
+
 
     return postcss([
       substituteAtRules(config, getProcessedPlugins()),

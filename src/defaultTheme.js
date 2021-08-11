@@ -1,1 +1,1 @@
-modules.exports = require('./config/theme')
+module.exports = require('./config/theme')

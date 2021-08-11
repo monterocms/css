@@ -51,4 +51,3 @@ module.exports = () => function ({ defineComponent, config, theme }) {
 
   defineComponent('tag', component)
 }
- 

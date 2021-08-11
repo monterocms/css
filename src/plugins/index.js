@@ -11,14 +11,14 @@ module.exports = {
   typography: require('./typography'),
   link: require('./link'),
 
-  // Layout
+  // // Layout
   stack: require('./stack'),
   grid: require('./grid'),
 
   avatar: require('./avatar'),
   spinner: require('./spinner'),
   tag: require('./tag'),
-  // badge: require('./badge'),
+  badge: require('./badge'),
   divider: require('./divider'),
 
   code: require('./code'),
@@ -26,7 +26,7 @@ module.exports = {
   aspectBox: require('./aspectBox'),
   breadcrumb: require('./breadcrumb'),
 
-  // // Feedback
+  // Feedback
   alert: require('./alert'),
 
   //
