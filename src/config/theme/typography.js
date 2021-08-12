@@ -45,5 +45,8 @@ module.exports = {
     mono: 'SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace'
   },
 
-  fontSize: typeScale('Application'),
+  fontSize: {
+    root: '16px',
+    ...typeScale('Application')
+  },
 }

@@ -104,7 +104,9 @@ module.exports = function (plugins, config) {
       token,
       theme,
       t: theme,
+      v: theme,
       ref,
+      r: ref,
 
       corePlugins: (path) => {
         if (Array.isArray(config.corePlugins)) {
