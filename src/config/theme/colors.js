@@ -4,7 +4,8 @@ module.exports = {
   black: '#151619',
   white: '#FFFFFF',
 
-  foo: 'bar',
+  text: 'theme(colors.gray.800)',
+  bg: 'white',
 
   'while-alpha': {
     50: 'rgba(255, 255, 255, 0.04)',

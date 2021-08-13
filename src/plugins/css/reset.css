@@ -76,6 +76,8 @@
    font-family: inherit;
    line-height: inherit;
    font-size: theme('fontSize.base');
+   color: theme('colors.text');
+   background: theme('colors.bg');
  }
 
  /**

@@ -18,9 +18,13 @@ const getConfigFunction = (config) => () => {
     })
   }
 
-  return _.isObject(config)
-    ? _.get(config, 'config', config)
-    : require(config)
+  try {
+    return _.isObject(config)
+      ? _.get(config, 'config', config)
+      : require(config)
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 
